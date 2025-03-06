@@ -324,16 +324,19 @@ def generate_residuals(exp_file=None, modeltype = 'arima', model=None, nn_params
   print ("Residuals saved.")  
 
 
- 
-exp_file = "crnngan_exp1.json"
-exp_rgan_file="rgan_exp1.json"
-# generate_visualizations(exp_file)
-# TODO: get nnparams from exp_file
-# model = 'rgan'
-# generate_residuals(exp_file=exp_rgan_file, modeltype='gans',
-#                   model=model, nn_params={'bs':120, 'e':1, 
-#                   'v':True, 'nfeatures':1, 'n_steps':48})
+def main():
+  exp_file = "crnngan_exp1.json"
+  exp_rgan_file="rgan_exp1.json"
+  # generate_visualizations(exp_file)
+  # TODO: get nnparams from exp_file
+  # model = 'rgan'
+  # generate_residuals(exp_file=exp_rgan_file, modeltype='gans',
+  #                   model=model, nn_params={'bs':120, 'e':1, 
+  #                   'v':True, 'nfeatures':1, 'n_steps':48})
 
-df = pd.read_csv("experiments/rgan_exp1/residuals/df_resid_tests.csv")
+  df = pd.read_csv("experiments/rgan_exp1/residuals/df_resid_tests.csv")
 
-print(get_best_test(df, 0.16))
+  print(get_best_test(df, 0.16))
+
+if __name__ == "__main__":
+  main()

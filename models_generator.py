@@ -124,19 +124,22 @@ def test_arima():
     print (exp_settings['tests'].keys())
     #u.creat_directories(exp_id, exp_settings)
 
-model = "crnngan"
-   
+def main():
+    model = "crnngan"
 
-# dict_settings = load_experiment(model)
-# arguments = ""
-# for k in dict_settings:
-#     temp = "{} {}".format(k, dict_settings[k])
-#     arguments =  arguments + "{} ".format(temp)
+    # dict_settings = load_experiment(model)
+    # arguments = ""
+    # for k in dict_settings:
+    #     temp = "{} {}".format(k, dict_settings[k])
+    #     arguments =  arguments + "{} ".format(temp)
 
-#os.system("python models/c_rnn_gan/rnn_gan_compat.py {}".format(arguments))
-experiment_id = "exp1"
-tests = ["t1","t2", "t3"]
-#u.creat_directories(experiment_id, tests)
-#test_crnngan()
-# test_rgan()
-test_timegan()
+    #os.system("python models/c_rnn_gan/rnn_gan_compat.py {}".format(arguments))
+    experiment_id = "exp1"
+    tests = ["t1","t2", "t3"]
+    #u.creat_directories(experiment_id, tests)
+    #test_crnngan()
+    # test_rgan()
+    test_timegan()
+
+if __name__ == "__main__":
+    main()

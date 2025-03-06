@@ -108,7 +108,10 @@ def save_samples(path,sample_name, samples):
 
     np.save("{}{}.npy".format(path,sample_name), samples)
 
+def main():
+    # synth_data("crnngan","crnngan_exp1.json", n_samples=3)
+    # synth_data("rgan","rgan_exp1.json", n_samples=3, rgan_params={'param_id':'test2_1'})
+    synth_data("timegan", "timegan_exp1.json", n_samples=2)
 
-# synth_data("crnngan","crnngan_exp1.json", n_samples=3)
-# synth_data("rgan","rgan_exp1.json", n_samples=3, rgan_params={'param_id':'test2_1'})
-synth_data("timegan", "timegan_exp1.json", n_samples=2)
+if __name__ == "__main__":
+  main()
