@@ -6,7 +6,7 @@ import glob
 import pandas as pd
 
 from keras.models import Sequential, load_model
-from keras.optimizers import Adam
+from keras.optimizer_v2.adam import Adam
 from keras.layers import LSTM, Dense, GRU
 from keras.callbacks import EarlyStopping
 
