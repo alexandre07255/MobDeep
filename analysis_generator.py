@@ -115,12 +115,18 @@ def load_real_data(exp_json, model=None):
   """
 
   list_tests = exp_json['tests'].keys()
-  datadir = exp_json['tests'][list_tests[0]]['datadir']
+  datadir = None
   if model == 'crnngan':
+    datadir = exp_json['tests'][list_tests[0]]['datadir']
     filename = exp_json['tests'][list_tests[0]]['filename']
   elif model == 'rgan':
+    datadir = exp_json['tests'][list_tests[0]]['datadir']
     data_load_from = exp_json['tests'][list_tests[0]]['data_load_from']
     return load_rgan_data(datadir, data_load_from)
+  elif model == 'timegan':
+    # Ale: datadir has to be manually set
+    datadir = "datasets/data_test/"
+    filename = "data_test.npy"
 
   real_data  = np.load(datadir+filename, allow_pickle=True)
   real_data_shp = real_data.shape
@@ -196,7 +202,7 @@ def estocastic_residuals(exp_json):
   raise NotImplementedError
 
 
-def deep_residuals(exp_json, real_data, nn_params):
+def deep_residuals(exp_json, real_data, nn_params, exp_file):
   """
   Get the residuals for deep learning based models
 
@@ -295,6 +301,7 @@ def get_best_test(df_resid, treshold=0.5):
     message = "Model std is larger than the {} treshold".format(treshold)
   return message
 
+
 def generate_residuals(exp_file=None, modeltype = 'arima', model=None, nn_params={'bs':200, 'e':50, 'v':False}):
   """
   Method to compute the models residuals
@@ -320,7 +327,8 @@ def generate_residuals(exp_file=None, modeltype = 'arima', model=None, nn_params
   if (modeltype == 'arima'):
     df_resid = estocastic_residuals(exp_json)
   elif(modeltype=='gans'):
-    df_resid = deep_residuals(exp_json, real_data, nn_params)
+    # Ale: exp_json == exp_file ?
+    df_resid = deep_residuals(exp_json, real_data, nn_params, exp_file)
   print ("Residuals saved.")  
 
 
